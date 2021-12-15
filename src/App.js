@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home/Home";
+import Definition from "./components/Definition/Definition";
+import Bookmarks from "./components/Bookmarks/Bookmarks";
+import theme from "./theme";
+import { ThemeProvider, CssBaseline, Grid } from "@mui/material";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Grid
+        container
+        sx={{ p: 2, mt: { xs: 0, sm: 2 } }}
+        justifyContent="center"
+      >
+        <Grid item xs={12} sm={8} md={5} lg={3}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route path="/search/:word" element={<Definition />} />
+          </Routes>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
 }
 
